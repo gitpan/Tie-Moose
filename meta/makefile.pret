@@ -1,0 +1,13 @@
+# This file provides instructions for packaging.
+
+`Tie-Moose`
+	perl_version_from m`Tie::Moose`;
+	version_from      m`Tie::Moose`;
+	readme_from       m`Tie::Moose`;
+	test_requires     p`Test::More 0.61`;
+	requires          p`Moose 2.00`;
+	requires          p`MooseX::Traits 0.09`;
+	requires          p`Scalar::Does 0.002`;
+	test_requires     p`Test::Fatal 0.007`;
+	.
+
