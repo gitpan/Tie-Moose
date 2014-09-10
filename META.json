@@ -1,0 +1,86 @@
+{
+   "abstract" : "tie a hash to a Moose object (yeah, like Tie::MooseObject)",
+   "author" : [
+      "Toby Inkster (TOBYINK) <tobyink@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Moose::Meta::Class::__ANON__::SERIAL::6 version , CPAN::Meta::Converter version 2.140640",
+   "keywords" : [],
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Tie-Moose",
+   "no_index" : {
+      "directory" : [
+         "eg",
+         "examples",
+         "inc",
+         "t",
+         "xt"
+      ]
+   },
+   "optional_features" : {},
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.17"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Moose" : "2.00",
+            "MooseX::Traits" : "0.09",
+            "Scalar::Does" : "0.002"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::Fatal" : "0.007",
+            "Test::More" : "0.61"
+         }
+      }
+   },
+   "provides" : {
+      "Tie::Moose" : {
+         "file" : "lib/Tie/Moose.pm",
+         "version" : "0.002"
+      },
+      "Tie::Moose::FallbackHash" : {
+         "file" : "lib/Tie/Moose/FallbackHash.pm",
+         "version" : "0.002"
+      },
+      "Tie::Moose::FallbackSlot" : {
+         "file" : "lib/Tie/Moose/FallbackSlot.pm",
+         "version" : "0.002"
+      },
+      "Tie::Moose::Forgiving" : {
+         "file" : "lib/Tie/Moose/Forgiving.pm",
+         "version" : "0.002"
+      },
+      "Tie::Moose::ReadOnly" : {
+         "file" : "lib/Tie/Moose/ReadOnly.pm",
+         "version" : "0.002"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "X_identifier" : "http://purl.org/NET/cpan-uri/dist/Tie-Moose/project",
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/Dist/Display.html?Queue=Tie-Moose"
+      },
+      "homepage" : "https://metacpan.org/release/Tie-Moose",
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tobyink/p5-tie-moose.git",
+         "web" : "https://github.com/tobyink/p5-tie-moose"
+      }
+   },
+   "version" : "0.002"
+}

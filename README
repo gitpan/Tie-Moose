@@ -28,26 +28,25 @@ SYNOPSIS
 
 DESCRIPTION
     This module is much like Tie::MooseObject. It ties a hash to an instance
-    of a Moose-based class, allowing you to access attributes as hash keys.
-    It uses the accessors provided by Moose, and thus honours read-only
+    of a Moose-based class, allowing you to access attributes as hash keys. It
+    uses the accessors provided by Moose, and thus honours read-only
     attributes, type constraints and coercions, triggers, etc.
 
     There are a few key differences with Tie::MooseObject:
 
-    *   It handles differently named getters/setters more to my liking.
-        Given the example in the SYNOPSIS, with Tie::MooseObject you need to
-        write:
+    *   It handles differently named getters/setters more to my liking. Given
+        the example in the SYNOPSIS, with Tie::MooseObject you need to write:
 
                 $bob{set_age} = 32;
                 say $bob{get_age};
 
-        Whereas with Tie::Moose, you just use the "age" hash key for both
+        Whereas with Tie::Moose, you just use the `age` hash key for both
         fetching from and storing to the hash.
 
-    *   Implements "DELETE" from the Tie::Hash interface. Tie::MooseObject
+    *   Implements `DELETE` from the Tie::Hash interface. Tie::MooseObject
         does not allow keys to be deleted from its hashes.
 
-        ("DELETE" only works on Moose attributes that have a "clearer"
+        (`DELETE` only works on Moose attributes that have a "clearer"
         method.)
 
     *   Supplied with various traits to influence the behaviour of the tied
@@ -55,8 +54,8 @@ DESCRIPTION
 
                 tie my %bob, "Tie::Moose"->with_traits("ReadOnly"), $bob;
 
-        (Note that by design, many of the traits supplied with Tie::Moose
-        are mutually exclusive.)
+        (Note that by design, many of the traits supplied with Tie::Moose are
+        mutually exclusive.)
 
 BUGS
     Please report any bugs to
@@ -65,9 +64,8 @@ BUGS
 SEE ALSO
     Tie::MooseObject.
 
-    Traits for Tie::Moose hashes: Tie::Moose::ReadOnly,
-    Tie::Moose::Forgiving, Tie::Moose::FallbackHash,
-    Tie::Moose::FallbackSlot.
+    Traits for Tie::Moose hashes: Tie::Moose::ReadOnly, Tie::Moose::Forgiving,
+    Tie::Moose::FallbackHash, Tie::Moose::FallbackSlot.
 
 AUTHOR
     Toby Inkster <tobyink@cpan.org>.
@@ -75,8 +73,8 @@ AUTHOR
 COPYRIGHT AND LICENCE
     This software is copyright (c) 2013 by Toby Inkster.
 
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as the Perl 5 programming language system itself.
+    This is free software; you can redistribute it and/or modify it under the
+    same terms as the Perl 5 programming language system itself.
 
 DISCLAIMER OF WARRANTIES
     THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED

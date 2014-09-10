@@ -5,7 +5,7 @@ use warnings;
 package Tie::Moose::Forgiving;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 
 use Moose::Role;
 
