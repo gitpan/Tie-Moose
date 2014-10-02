@@ -1,18 +1,17 @@
-use 5.010;
+use 5.008;
 use strict;
 use warnings;
 
 package Tie::Moose::ReadOnly;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.002';
+our $VERSION   = '0.003';
 
 use Moose::Role;
+use namespace::autoclean;
 use Carp qw(croak);
 
 before [qw( STORE DELETE CLEAR )] => sub { croak "Read-only tied hash" };
-
-no Moose::Role;
 
 1;
 

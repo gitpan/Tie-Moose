@@ -7,7 +7,7 @@ my $meta = {
   "abstract"       => "tie a hash to a Moose object (yeah, like Tie::MooseObject)",
   "author"         => ["Toby Inkster (TOBYINK) <tobyink\@cpan.org>"],
   "dynamic_config" => 0,
-  "generated_by"   => "Moose::Meta::Class::__ANON__::SERIAL::6 version , CPAN::Meta::Converter version 2.140640",
+  "generated_by"   => "Dist::Inkt::Profile::TOBYINK version 0.023, CPAN::Meta::Converter version 2.140640",
   "keywords"       => [],
   "license"        => ["perl_5"],
   "meta-spec"      => {
@@ -19,16 +19,25 @@ my $meta = {
   "prereqs"        => {
                         configure => { requires => { "ExtUtils::MakeMaker" => 6.17 } },
                         runtime => {
-                          requires => { "Moose" => "2.00", "MooseX::Traits" => 0.09, "Scalar::Does" => 0.002 },
+                          requires => {
+                            "Moose" => "2.00",
+                            "MooseX::Traits" => 0.09,
+                            "namespace::autoclean" => "0.20",
+                            "perl" => "5.008000",
+                            "Types::Standard" => "1.000000",
+                            "Types::TypeTiny" => "1.000000",
+                          },
                         },
-                        test => { requires => { "Test::Fatal" => 0.007, "Test::More" => 0.61 } },
+                        test => {
+                          requires => { "Test::Fatal" => 0.007, "Test::More" => 0.96, "Test::Warnings" => 0 },
+                        },
                       },
   "provides"       => {
-                        "Tie::Moose"               => { file => "lib/Tie/Moose.pm", version => 0.002 },
-                        "Tie::Moose::FallbackHash" => { file => "lib/Tie/Moose/FallbackHash.pm", version => 0.002 },
-                        "Tie::Moose::FallbackSlot" => { file => "lib/Tie/Moose/FallbackSlot.pm", version => 0.002 },
-                        "Tie::Moose::Forgiving"    => { file => "lib/Tie/Moose/Forgiving.pm", version => 0.002 },
-                        "Tie::Moose::ReadOnly"     => { file => "lib/Tie/Moose/ReadOnly.pm", version => 0.002 },
+                        "Tie::Moose"               => { file => "lib/Tie/Moose.pm", version => 0.003 },
+                        "Tie::Moose::FallbackHash" => { file => "lib/Tie/Moose/FallbackHash.pm", version => 0.003 },
+                        "Tie::Moose::FallbackSlot" => { file => "lib/Tie/Moose/FallbackSlot.pm", version => 0.003 },
+                        "Tie::Moose::Forgiving"    => { file => "lib/Tie/Moose/Forgiving.pm", version => 0.003 },
+                        "Tie::Moose::ReadOnly"     => { file => "lib/Tie/Moose/ReadOnly.pm", version => 0.003 },
                       },
   "release_status" => "stable",
   "resources"      => {
@@ -40,9 +49,9 @@ my $meta = {
                                           url  => "git://github.com/tobyink/p5-tie-moose.git",
                                           web  => "https://github.com/tobyink/p5-tie-moose",
                                         },
-                        X_identifier => "http://purl.org/NET/cpan-uri/dist/Tie-Moose/project",
+                        x_identifier => "http://purl.org/NET/cpan-uri/dist/Tie-Moose/project",
                       },
-  "version"        => 0.002,
+  "version"        => 0.003,
 };
 
 my %dynamic_config;

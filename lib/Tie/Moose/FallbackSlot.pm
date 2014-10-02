@@ -1,19 +1,23 @@
-use 5.010;
+use 5.008;
 use strict;
 use warnings;
 
 package Tie::Moose::FallbackSlot;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.002';
+our $VERSION   = '0.003';
 
 use Moose::Role;
+use namespace::autoclean;
 use Carp qw(croak);
-use Scalar::Does -constants;
+use Types::Standard -types;
+use Types::TypeTiny qw(HashLike);
+
+my $hashish = Ref['HASH'] | HashLike;
 
 has _fallback_slot => (
 	is       => 'ro',
-	isa      => 'Str',
+	isa      => Str,
 	required => 1,
 	init_arg => 'fallback',
 );
@@ -24,19 +28,19 @@ override fallback => sub
 	my ($operation, $key, $value) = @_;
 	my $slot = $self->_fallback_slot;
 	
-	does($self->object->$slot, HASH)
+	$hashish->check($self->object->$slot)
 		or croak "Value of tied object's '$slot' attribute is not hashref-like";
 	
-	given ($operation) {
-		when ("FETCH")  { return $self->object->$slot->{$key} }
-		when ("STORE")  { return $self->object->$slot->{$key} = $value }
-		when ("EXISTS") { return exists $self->object->$slot->{$key} }
-		when ("DELETE") { return delete $self->object->$slot->{$key} }
-		default         { confess "This should never happen!" }
+	for ($operation)
+	{
+		if ($_ eq "FETCH")  { return $self->object->$slot->{$key} }
+		if ($_ eq "STORE")  { return $self->object->$slot->{$key} = $value }
+		if ($_ eq "EXISTS") { return exists $self->object->$slot->{$key} }
+		if ($_ eq "DELETE") { return delete $self->object->$slot->{$key} }
+		
+		confess "This should never happen!";
 	}
 };
-
-no Moose::Role;
 
 1;
 

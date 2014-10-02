@@ -1,22 +1,25 @@
-use 5.010;
+use 5.008;
 use strict;
 use warnings;
 
 package Tie::Moose::FallbackHash;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.002';
+our $VERSION   = '0.003';
 
 use Moose::Role;
+use namespace::autoclean;
 use Carp qw(croak);
-use Scalar::Does -constants;
+use Types::Standard -types;
+use Types::TypeTiny qw(HashLike);
+
+my $hashish = Ref['HASH'] | HashLike;
 
 has _fallback_hash => (
 	is       => 'ro',
-	isa      => 'Ref',
+	isa      => $hashish,
 	required => 1,
 	init_arg => 'fallback',
-	trigger  => sub { does($_[1], HASH) or croak "Fallback hash is not hashref-like" },
 );
 
 override fallback => sub
@@ -25,16 +28,16 @@ override fallback => sub
 	my ($operation, $key, $value) = @_;
 	my $hash = $self->_fallback_hash;
 	
-	given ($operation) {
-		when ("FETCH")  { return $hash->{$key} }
-		when ("STORE")  { return $hash->{$key} = $value }
-		when ("EXISTS") { return exists $hash->{$key} }
-		when ("DELETE") { return delete $hash->{$key} }
-		default         { confess "This should never happen!" }
+	for ($operation)
+	{
+		if ($_ eq "FETCH")  { return $hash->{$key} }
+		if ($_ eq "STORE")  { return $hash->{$key} = $value }
+		if ($_ eq "EXISTS") { return exists $hash->{$key} }
+		if ($_ eq "DELETE") { return delete $hash->{$key} }
+		
+		confess "This should never happen!";
 	}
 };
-
-no Moose::Role;
 
 1;
 

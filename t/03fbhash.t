@@ -18,6 +18,7 @@ the same terms as the Perl 5 programming language system itself.
 use strict;
 use warnings;
 use Test::More;
+use Test::Warnings;
 use Test::Fatal;
 
 use Tie::Moose;
@@ -58,7 +59,7 @@ ok(!exists $fb{xyz});
 
 like(
 	exception { tie my %hash, "Tie::Moose"->with_traits("FallbackHash"), $object, fallback => [] },
-	qr{^Fallback hash is not hashref-like},
+	qr{not pass the type constraint},
 );
 
 done_testing;

@@ -1,29 +1,30 @@
-use 5.010;
+use 5.008;
 use strict;
 use warnings;
 
 package Tie::Moose::Forgiving;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.002';
+our $VERSION   = '0.003';
 
 use Moose::Role;
+use namespace::autoclean;
 
 override fallback => sub
 {
 	my $self = shift;
 	my ($operation, $key, $value) = @_;
 	
-	given ($operation) {
-		when ("FETCH")  { return; }
-		when ("STORE")  { super; }
-		when ("EXISTS") { return; }
-		when ("DELETE") { return; }
-		default         { confess "This should never happen!" }
+	for ($operation)
+	{
+		if ($_ eq "FETCH")  { return; }
+		if ($_ eq "STORE")  { super; }
+		if ($_ eq "EXISTS") { return; }
+		if ($_ eq "DELETE") { return; }
+		
+		confess "This should never happen!";
 	}
 };
-
-no Moose::Role;
 
 1;
 
